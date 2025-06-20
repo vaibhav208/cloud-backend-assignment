@@ -1,0 +1,22 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-catalog-v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: product-catalog
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: product-catalog
+        version: v1
+    spec:
+      containers:
+      - name: product-catalog-service
+        image: product-catalog-service:v1.0
+        ports:
+        - containerPort: 3000
