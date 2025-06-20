@@ -34,7 +34,7 @@ jobs:
           sudo mv kubectl /usr/local/bin/kubectl
 
       - name: Set KUBECONFIG from secret
-        run: echo "${{ secrets.KUBECONFIG_DATA }}" > ${{ github.workspace }}/kubeconfig
+        run: echo "${{ secrets.KUBECONFIG_DATA }}" | base64 -d > ${{ github.workspace }}/kubeconfig
 
       - name: Deploy to Kubernetes
         env:
